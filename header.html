@@ -1,0 +1,47 @@
+<header>
+    <div class="navbar">
+        <div class="navbar-start">
+            <a href="home.html" class="logo"><img src="disney-logo.png" alt="Disney+ Logo" style="filter: invert(100%);"></a>
+        </div>
+        <div class="navbar-center">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="home.html"><i class="fas fa-home"></i> HOME</a></li>
+                    <li><a href="search.html"><i class="fas fa-search"></i> SEARCH</a></li>
+                    <li><a href="watchlist.html"><i class="fas fa-plus"></i> WATCHLIST</a></li>
+                    <li><a href="movies.html"><i class="fas fa-film"></i> MOVIES</a></li>
+                    <li><a href="series.html"><i class="fas fa-tv"></i> SERIES</a></li>
+                    <li><a href="originals.html"><i class="fas fa-star"></i> ORIGINALS</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="navbar-end">
+            <div class="profile">
+                <img src="profile-icon.jpg" alt="Profile" class="profile-icon" onclick="toggleDropdown()">
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <p>Logged in as</p>
+                    <p id="user-email">User Email</p>
+                    <button onclick="logout()">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let email = getCookie('user_email');
+    if (email) {
+        document.getElementById('user-email').textContent = email;
+    }
+});
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.profile-icon')) {
+            let dropdown = document.getElementById('dropdown-menu');
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    }
+</script>
+<script src="scripts.js"></script>

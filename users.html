@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Disney+ Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="movpreview">
+            <h1>Welcome to Disney+</h1>
+            <p>Enjoy streaming your favorite movies and shows.</p>
+        </section>
+        <section class="movie-section">
+            <h2>Recommended Movies</h2>
+            <div class="movie-list" id="recommended-movies">
+                <!-- Recommended movies will be dynamically loaded here -->
+                <?php include 'data/movies.php'; ?>
+            </div>
+        </section>
+        <section class="movie-section">
+            <h2>New Releases</h2>
+            <div class="movie-list" id="new-releases">
+                <!-- New releases will be dynamically loaded here -->
+                <?php include 'data/new_releases.php'; ?>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Disney+ Clone. All rights reserved.</p>
+    </footer>
+</body>
+</html>

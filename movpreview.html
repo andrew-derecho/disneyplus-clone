@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney+ - Movie Preview</title>
+    <link rel="stylesheet" href="styles.css">
+    <style></style>
+</head>
+<body>
+    <header></header>
+    <main>
+        <section class="movpreview">
+            <div class="movpreview-overlay">
+                <img id="movpreview-logo" src="" alt="Movie Logo" class="movpreview-logo">
+                <h1 id="movpreview-title">Movie Title</h1>
+                <p id="movpreview-description">Movie Description</p>
+                <div class="movpreview-buttons">
+                    <button onclick="showTrailer()" class="btn play-btn">Play</button>
+                    <button onclick="showTrailer()" class="btn trailer-btn">Trailer</button>
+                    <button onclick="addToWatchlist()" class="btn trailer-btn">+</button>
+                </div>
+            </div>
+            <img id="movpreview-image" src="" alt="Movie Image" class="movpreview-image">
+        </section>
+    </main>
+    <footer></footer>
+    <script>
+        function getParameterByName(name) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }   
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let title = getParameterByName('title');
+            let image = getParameterByName('image');
+            let trailer = getParameterByName('trailer');
+            let description = getParameterByName('description');
+            let logo = getParameterByName('logo');
+
+            document.getElementById('movpreview-title').textContent = title;
+            document.getElementById('movpreview-image').src = image;
+            document.getElementById('movpreview-description').textContent = description;
+            document.getElementById('movpreview-logo').src = logo;
+
+            window.playTrailer = () => {
+            };
+
+            window.showTrailer = () => {
+                let url = new URL(window.location.href);
+                url.pathname = '/disneyplus/player.html';
+                url.searchParams.set('trailer', trailer);
+                window.location.href = url.toString();
+            };
+
+
+        });
+        function addToWatchlist() {
+            let title = getParameterByName('title');
+            let image = getParameterByName('image');
+            let description = getParameterByName('description');
+            let logo = getParameterByName('logo');
+            let email = document.cookie.split('; ').find(row => row.startsWith('user_email')).split('=')[1];
+
+            fetch('data/add_to_watchlist.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    title: title,
+                    image: image,
+                    description: description,
+                    logo: logo
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'success') {
+                    alert('Added to watchlist!');
+                } else {
+                    alert('Failed to add to watchlist.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+    <script src="scripts.js"></script>
+</body>
+</html>
