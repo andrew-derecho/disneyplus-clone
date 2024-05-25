@@ -8,9 +8,10 @@ header('Content-Type: application/json');
 if (isset($_GET['email'])) {
     $email = $_GET['email'];
 
-    $sql = "SELECT movies.title, movies.thumbnail FROM watchlist 
-            JOIN movies ON watchlist.movie_id = movies.id 
-            WHERE watchlist.user_email = ?";
+    $sql = "SELECT movies.title, movies.description, movies.thumbnail, movies.logo, movies.url 
+    FROM watchlist 
+    JOIN movies ON watchlist.movie_id = movies.id 
+    WHERE watchlist.user_email = ?";
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
         echo json_encode(['error' => 'prepare() failed: ' . htmlspecialchars($conn->error)]);
@@ -28,6 +29,9 @@ if (isset($_GET['email'])) {
             $watchlist[] = [
                 'title' => $row['title'],
                 'thumbnail' => $row['thumbnail'],
+                'description' => $row['description'],
+                'logo' => $row['logo'],
+                'url' => $row['url'],
             ];
         }
     } else {
